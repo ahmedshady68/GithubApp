@@ -80,6 +80,8 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
 
+    implementation ("com.airbnb.android:lottie-compose:4.2.0")
+
     implementation("io.coil-kt:coil-compose:2.3.0")
 
     implementation(project(mapOf("path" to ":domain")))
