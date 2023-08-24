@@ -3,4 +3,5 @@
     <string name="trending_screen_title">Trending</string>
     <string name="menu_icon_content_des">Menu Icon</string>
     <string name="owner_profile_image_content_des">owner profile image</string>
+    <string name="retry_button_text">Retry</string>
 </resources>

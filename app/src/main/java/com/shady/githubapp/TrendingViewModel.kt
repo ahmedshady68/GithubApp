@@ -26,10 +26,6 @@ class TrendingViewModel @Inject constructor(private val getTrendingUseCase: GetT
     // process from activity
     private fun processTrending() {
         viewModelScope.launch {
-            trendingViewState = trendingViewState.copy(
-                isLoading = true,
-                error = null
-            )
             intentChannel.consumeAsFlow().collect {
                 when (it) {
                     is TrendingIntent.GetTrending -> reduceTrending()
@@ -41,6 +37,10 @@ class TrendingViewModel @Inject constructor(private val getTrendingUseCase: GetT
     // reduce to activity
     private fun reduceTrending() {
         viewModelScope.launch {
+            trendingViewState = trendingViewState.copy(
+                isLoading = true,
+                error = null
+            )
             trendingViewState = try {
                 trendingViewState.copy(
                     trendingInfo = getTrendingUseCase(),

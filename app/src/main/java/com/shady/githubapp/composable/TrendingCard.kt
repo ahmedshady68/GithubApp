@@ -1,4 +1,4 @@
-package com.shady.githubapp
+package com.shady.githubapp.composable
 
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.shady.domain.entity.Item
+import com.shady.githubapp.R
 
 @Composable
 fun TrendingCard(state: Item) {

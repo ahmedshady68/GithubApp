@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
+import com.shady.githubapp.screens.TrendingGithubApp
 import com.shady.githubapp.ui.theme.GithubAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -19,14 +20,15 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        sendIntent()
+        setContent {
+            TrendingGithubApp(viewModel.trendingViewState, this::sendIntent)
+        }
+    }
+
+    private fun sendIntent() {
         lifecycleScope.launch {
             viewModel.intentChannel.send(TrendingIntent.GetTrending)
-        }
-        setContent {
-            GithubAppTheme {
-                val state = viewModel.trendingViewState
-                TrendingScreen(state)
-            }
         }
     }
 }
