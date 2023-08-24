@@ -10,7 +10,7 @@ import com.shady.githubapp.composable.AppBarTrending
 import com.shady.githubapp.ui.theme.GithubAppTheme
 
 @Composable
-fun TrendingGithubApp(state: TrendingViewState, retry: () -> Unit) {
+fun TrendingGithubApp(listState: TrendingViewState, retryOnClick: () -> Unit) {
     GithubAppTheme {
         Scaffold(
             topBar = {
@@ -18,7 +18,7 @@ fun TrendingGithubApp(state: TrendingViewState, retry: () -> Unit) {
             }
         ) { innerPadding ->
             Box(modifier = Modifier.padding(innerPadding)) {
-                TrendingList(state, retry)
+                TrendingList(listState = listState, retryOnClick = retryOnClick)
             }
         }
     }

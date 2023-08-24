@@ -7,18 +7,18 @@ import com.shady.githubapp.TrendingViewState
 
 
 @Composable
-fun TrendingList(state: TrendingViewState, retry: () -> Unit) {
+fun TrendingList(listState: TrendingViewState, retryOnClick: () -> Unit) {
     Surface(
         color = MaterialTheme.colors.background
     ) {
-        if (state.isLoading) {
+        if (listState.isLoading) {
             TrendingLoadingScreen()
         }
-        state.trendingInfo?.let {
-            TrendingSuccessScreen(state = state)
+        listState.trendingInfo?.let {
+            TrendingSuccessScreen(state = listState)
         }
-        state.error?.let {
-            TrendingErrorScreen(retry)
+        listState.error?.let {
+            TrendingErrorScreen(retryOnClick = retryOnClick)
         }
     }
 }

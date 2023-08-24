@@ -24,7 +24,7 @@ import com.shady.githubapp.R
 
 
 @Composable
-fun TrendingErrorScreen(retry: () -> Unit) {
+fun TrendingErrorScreen(retryOnClick: () -> Unit) {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -40,7 +40,7 @@ fun TrendingErrorScreen(retry: () -> Unit) {
                 .align(alignment = BottomCenter)
                 .padding(bottom = 50.dp, start = 20.dp, end = 20.dp),
             onClick = {
-                retry.invoke()
+                retryOnClick.invoke()
             },
             border = BorderStroke(1.dp, Color.Green)
         ) {
