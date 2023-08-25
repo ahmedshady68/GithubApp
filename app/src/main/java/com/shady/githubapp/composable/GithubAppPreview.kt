@@ -15,7 +15,7 @@ fun GithubAppPreview() {
         TrendingGithubApp(
             TrendingViewState(
                 TrendingResponse(
-                    false, listOf(
+                    listOf(
                         Item(
                             "Android Repo",
                             "Senior Android Developer",
@@ -23,7 +23,7 @@ fun GithubAppPreview() {
                             "500",
                             Owner("https://avatars.githubusercontent.com/u/4314092?v=4", "Alex")
                         )
-                    ), 0
+                    )
                 )
             )
         ) {

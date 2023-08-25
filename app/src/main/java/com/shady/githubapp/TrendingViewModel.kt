@@ -7,17 +7,31 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.shady.domain.usecase.GetTrending
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TrendingViewModel @Inject constructor(private val getTrendingUseCase: GetTrending) :
+class TrendingViewModel @Inject constructor(
+    private val getTrendingUseCase: GetTrending,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
+) :
     ViewModel() {
     val intentChannel = Channel<TrendingIntent>(Channel.UNLIMITED)
     var trendingViewState by mutableStateOf(TrendingViewState())
-        private set
+
+    private val exceptionHandler: CoroutineExceptionHandler =
+        CoroutineExceptionHandler { _, throwable ->
+            viewModelScope.launch {
+                trendingViewState.copy(
+                    error = throwable
+                )
+            }
+        }
 
     init {
         processTrending()
@@ -36,7 +50,7 @@ class TrendingViewModel @Inject constructor(private val getTrendingUseCase: GetT
 
     // reduce to activity
     private fun reduceTrending() {
-        viewModelScope.launch {
+        viewModelScope.launch(exceptionHandler + dispatcher) {
             trendingViewState = trendingViewState.copy(
                 isLoading = true,
                 error = null
@@ -47,11 +61,11 @@ class TrendingViewModel @Inject constructor(private val getTrendingUseCase: GetT
                     isLoading = false,
                     error = null
                 )
-            } catch (e: Exception) {
+            } catch (error: Exception) {
                 trendingViewState.copy(
                     trendingInfo = null,
                     isLoading = false,
-                    error = e.message
+                    error = error
                 )
             }
         }
