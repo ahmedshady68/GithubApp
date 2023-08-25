@@ -2,6 +2,7 @@ package com.shady.githubapp.screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -15,7 +16,10 @@ import androidx.compose.ui.Alignment.Companion.TopCenter
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
@@ -28,12 +32,36 @@ fun TrendingErrorScreen(retryOnClick: () -> Unit) {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        LottieView(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(TopCenter)
-                .padding(top = 50.dp)
-        )
+        ) {
+            LottieView(
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+            Text(
+                text = stringResource(R.string.retry_title_text),
+                Modifier
+                    .padding(top = 25.dp)
+                    .fillMaxWidth(),
+                color = Color.Black,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                fontSize = 20.sp
+            )
+            Text(
+                text = stringResource(R.string.retry_description_text),
+                Modifier
+                    .padding(top = 13.dp)
+                    .fillMaxWidth(),
+                color = Color.Gray,
+                textAlign = TextAlign.Center,
+                fontSize = 16.sp
+            )
+        }
+
         OutlinedButton(
             modifier = Modifier
                 .fillMaxWidth()

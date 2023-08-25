@@ -4,13 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
+import com.shady.githubapp.composable.GithubAppPreview
 import com.shady.githubapp.screens.TrendingGithubApp
-import com.shady.githubapp.ui.theme.GithubAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -22,7 +20,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         sendIntent()
         setContent {
-            TrendingGithubApp(viewModel.trendingViewState, this::sendIntent)
+            TrendingGithubApp(listState = viewModel.trendingViewState, retryOnClick = ::sendIntent)
         }
     }
 
@@ -33,18 +31,8 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@Preview(showSystemUi = true)
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello ${name}!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    GithubAppTheme {
-        Greeting("Android")
-    }
+fun GithubAppPreview() {
+    GithubAppPreview()
 }

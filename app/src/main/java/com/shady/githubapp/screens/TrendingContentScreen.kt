@@ -1,24 +1,40 @@
 package com.shady.githubapp.screens
 
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.shady.githubapp.TrendingViewState
-
+import com.shady.githubapp.composable.ShimmerListItem
 
 @Composable
 fun TrendingList(listState: TrendingViewState, retryOnClick: () -> Unit) {
-    Surface(
-        color = MaterialTheme.colors.background
+    listState.isLoading.also { showShimmerLoading ->
+        ShimmerLoading(showShimmerLoading)
+    }
+    listState.trendingInfo?.let {
+        TrendingSuccessScreen(state = listState)
+    }
+    listState.error?.let {
+        TrendingErrorScreen(retryOnClick = retryOnClick)
+    }
+}
+
+@Composable
+fun ShimmerLoading(isLoading: Boolean) {
+    LazyColumn(
+        modifier = Modifier.fillMaxSize()
     ) {
-        if (listState.isLoading) {
-            TrendingLoadingScreen()
-        }
-        listState.trendingInfo?.let {
-            TrendingSuccessScreen(state = listState)
-        }
-        listState.error?.let {
-            TrendingErrorScreen(retryOnClick = retryOnClick)
+        items(20) {
+            ShimmerListItem(
+                isLoading = isLoading,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            )
         }
     }
 }

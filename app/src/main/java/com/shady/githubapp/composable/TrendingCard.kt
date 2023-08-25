@@ -74,7 +74,7 @@ fun TrendingCard(state: Item) {
                     )
                 }
             }
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(15.dp))
             ExpandablePartView(expanded, extraPadding, state)
             Divider(color = Color.LightGray, thickness = 1.dp)
         }
@@ -90,7 +90,7 @@ private fun ExpandablePartView(
     if (expanded.value) {
         Column(
             modifier = Modifier.padding(
-                bottom = extraPadding.coerceAtLeast(0.dp), start = 30.dp
+                bottom = 20.dp, start = 40.dp
             )
         ) {
             Text(
@@ -105,7 +105,7 @@ private fun ExpandablePartView(
                 Image(
                     painterResource(R.drawable.language_icon), "language_icon",
                     modifier = Modifier
-                        .padding(start = 40.dp)
+                        .padding(start = 30.dp)
                         .size(16.dp)
                         .align(CenterVertically),
                     colorFilter = ColorFilter.tint(color = Color(0xFF324299))
@@ -113,14 +113,14 @@ private fun ExpandablePartView(
                 Text(
                     text = state.language,
                     modifier = Modifier
-                        .padding(start = 3.dp)
+                        .padding(start = 6.dp)
                         .align(CenterVertically)
                 )
                 Image(
                     painterResource(R.drawable.stargazers_count_icon),
                     "stargazers_count_icon",
                     modifier = Modifier
-                        .padding(start = 40.dp)
+                        .padding(start = 30.dp)
                         .size(16.dp)
                         .align(CenterVertically),
                     colorFilter = ColorFilter.tint(color = Color(0xFFAC8D31))
@@ -128,7 +128,7 @@ private fun ExpandablePartView(
                 Text(
                     text = state.stargazersCount,
                     modifier = Modifier
-                        .padding(start = 3.dp)
+                        .padding(start = 6.dp)
                         .align(CenterVertically)
                 )
             }
