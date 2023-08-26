@@ -1,26 +1,28 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    id(Plugins.pluginAndroidLib)
+    id(Plugins.pluginKotlinAndroid)
 }
 
 android {
-    namespace = "com.shady.domain"
-    compileSdk = 33
+    namespace = AppConfigs.domainNameSpace
+    compileSdk = AppConfigs.compileSdk
+
 
     defaultConfig {
-        minSdk = 21
+        minSdk = AppConfigs.minSdk
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
+        testInstrumentationRunner = AppConfigs.testInstrumentationRunner
+        consumerProguardFiles(AppConfigs.consumerRulesPro)
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile(Constants.PROGUARD_ANDROID_OPTIMIZE),
+                Constants.PROGUARD_RULES
             )
+
         }
     }
     compileOptions {
@@ -30,12 +32,11 @@ android {
 }
 
 dependencies {
-
-    implementation("androidx.core:core-ktx:1.10.1")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    implementation("com.google.code.gson:gson:2.9.1")
+    implementation(Deps.coreKtx)
+    implementation(Deps.appcompat)
+    implementation(Deps.material)
+    testImplementation(Deps.testJUint)
+    androidTestImplementation(Deps.androidTestJUnit)
+    androidTestImplementation(Deps.androidTestExpresso)
+    implementation(Deps.gson)
 }
