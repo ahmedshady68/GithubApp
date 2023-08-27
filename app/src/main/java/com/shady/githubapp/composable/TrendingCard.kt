@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -52,17 +53,23 @@ fun TrendingCard(state: Item) {
         Column(
             modifier = Modifier.fillMaxWidth()
         ) {
-            Row(modifier = Modifier.padding(top = 20.dp, start = 30.dp)) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 20.dp, start = 30.dp)
+            ) {
                 Image(
                     painter = rememberAsyncImagePainter(model = state.owner.imageProfile),
                     contentDescription = stringResource(R.string.owner_profile_image_content_des),
+                    contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .size(40.dp)
                         .clip(CircleShape)
-                        .padding(start = 0.dp, end = 10.dp)
                 )
                 Column(
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier
+                        .padding(start = 20.dp)
+                        .weight(1f)
                 ) {
                     Text(
                         text = state.owner.userName, fontSize = 16.sp
@@ -70,7 +77,7 @@ fun TrendingCard(state: Item) {
                     Text(
                         text = state.fullName, style = MaterialTheme.typography.body1.copy(
                             fontWeight = FontWeight.ExtraBold
-                        ), fontSize = 18.sp
+                        ), fontSize = 18.sp, modifier = Modifier.padding(top = 5.dp)
                     )
                 }
             }
@@ -90,12 +97,12 @@ private fun ExpandablePartView(
     if (expanded.value) {
         Column(
             modifier = Modifier.padding(
-                bottom = 20.dp, start = 40.dp
+                bottom = 20.dp, start = 90.dp
             )
         ) {
             Text(
                 text = state.description,
-                modifier = Modifier.padding(top = 10.dp, start = 40.dp)
+                modifier = Modifier.padding(top = 10.dp)
             )
             Row(
                 modifier = Modifier
@@ -105,7 +112,6 @@ private fun ExpandablePartView(
                 Image(
                     painterResource(R.drawable.language_icon), "language_icon",
                     modifier = Modifier
-                        .padding(start = 30.dp)
                         .size(16.dp)
                         .align(CenterVertically),
                     colorFilter = ColorFilter.tint(color = Color(0xFF324299))
