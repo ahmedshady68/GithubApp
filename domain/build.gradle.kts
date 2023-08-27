@@ -39,4 +39,24 @@ dependencies {
     androidTestImplementation(Deps.androidTestJUnit)
     androidTestImplementation(Deps.androidTestExpresso)
     implementation(Deps.gson)
+    // test
+    androidTestImplementation(Deps.androidTestJUnit)
+    androidTestImplementation(Deps.androidTestExpresso)
+    androidTestImplementation(Deps.testComposeUiTestJUnit4)
+    androidTestImplementation(Deps.debugComposeUiTooling)
+    androidTestImplementation(Deps.debugComposeUiTestManifest)
+    implementation(Deps.coil)
+    testImplementation(Deps.mockk)
+    testImplementation(Deps.coroutinesTest)
+    testImplementation(Deps.coreTest)
+
+    //test
+    testImplementation(Deps.mockito)
+    testImplementation(Deps.mockitoAndroid)
+    testImplementation(Deps.mockitoKotlin2)
+    androidTestImplementation(Deps.androidXTest)
+    androidTestImplementation(Deps.espresso)
+    testImplementation(Deps.mockitoInLine)
+    testImplementation(Deps.mockitoKotlin)
+    testImplementation(Deps.archCoreTesting)
 }

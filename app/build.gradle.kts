@@ -85,6 +85,14 @@ dependencies {
     testImplementation(Deps.coroutinesTest)
     testImplementation(Deps.coreTest)
 
+    //test
+    androidTestImplementation(Deps.androidXTest)
+    androidTestImplementation(Deps.espresso)
+    testImplementation(Deps.archCoreTesting)
+    testImplementation(Deps.coroutinesTest)
+    // Coroutines
+    implementation(Deps.coroutines)
+    implementation(Deps.coroutinesCore)
     implementation(project(mapOf("path" to ":domain")))
     implementation(project(mapOf("path" to ":data")))
 }

@@ -36,6 +36,9 @@ dependencies {
     testImplementation(Deps.testJUint)
     androidTestImplementation(Deps.androidTestJUnit)
     androidTestImplementation(Deps.androidTestExpresso)
+    androidTestImplementation(Deps.testComposeUiTestJUnit4)
+    implementation(Deps.testJUint)
+
     implementation(project(mapOf("path" to ":domain")))
     // Coroutines
     implementation(Deps.coroutines)
@@ -43,4 +46,25 @@ dependencies {
     // Retrofit & OkHttp
     implementation(Deps.retrofit)
     implementation(Deps.retrofitConverter)
+
+    // test
+    androidTestImplementation(Deps.androidTestJUnit)
+    androidTestImplementation(Deps.androidTestExpresso)
+    androidTestImplementation(Deps.testComposeUiTestJUnit4)
+    androidTestImplementation(Deps.debugComposeUiTooling)
+    androidTestImplementation(Deps.debugComposeUiTestManifest)
+    implementation(Deps.coil)
+    testImplementation(Deps.mockk)
+    testImplementation(Deps.coroutinesTest)
+    testImplementation(Deps.coreTest)
+
+    //test
+    testImplementation(Deps.mockito)
+    testImplementation(Deps.mockitoAndroid)
+    testImplementation(Deps.mockitoKotlin2)
+    androidTestImplementation(Deps.androidXTest)
+    androidTestImplementation(Deps.espresso)
+    testImplementation(Deps.mockitoInLine)
+    testImplementation(Deps.mockitoKotlin)
+    testImplementation(Deps.archCoreTesting)
 }

@@ -40,4 +40,14 @@ object Versions {
     const val pluginAndroidLib = "8.1.0"
     const val pluginDevtoolsKSP = "1.8.10-1.0.9"
     const val pluginHiltAndroid = "2.45"
+
+    //testing
+    const val junit = "4.12"
+    const val mockito = "2.19.1"
+    const val mockitoKotlin2 = "2.1.0"
+    const val mockitoKotlin3 = "4.0.0"
+    const val androidXTest = "1.1.1"
+    const val espresso = "3.1.1"
+    const val mockitoInLine = "3.4.0"
+    const val archCoreTesting = "2.1.0"
 }

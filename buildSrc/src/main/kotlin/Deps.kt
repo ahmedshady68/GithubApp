@@ -48,5 +48,15 @@ object Deps {
     // coroutines
     val coroutines by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}" }
     val coroutinesCore by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}" }
+    val mockito by lazy { "org.mockito:mockito-core:${Versions.mockito}" }
 
+    val mockitoKotlin2 by lazy {
+        "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlin2}"
+    }
+    val mockitoAndroid by lazy { "org.mockito:mockito-android:${Versions.mockito}" }
+    val mockitoInLine by lazy { "org.mockito:mockito-inline:${Versions.mockitoInLine}" }
+    val mockitoKotlin by lazy { "org.mockito.kotlin:mockito-kotlin:${Versions.mockitoKotlin3}" }
+    val archCoreTesting by lazy { "androidx.arch.core:core-testing:${Versions.archCoreTesting}" }
+    val androidXTest by lazy { "androidx.test:runner:${Versions.androidXTest}" }
+    val espresso by lazy { "androidx.test.espresso:espresso-core:${Versions.espresso}" }
 }

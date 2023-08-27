@@ -1,8 +1,5 @@
 package com.shady.githubapp
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.shady.domain.usecase.GetTrending
@@ -10,25 +7,35 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class TrendingViewModel @Inject constructor(
-    private val getTrendingUseCase: GetTrending,
+    val getTrendingUseCase: GetTrending,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) :
     ViewModel() {
     val intentChannel = Channel<TrendingIntent>(Channel.UNLIMITED)
-    var trendingViewState by mutableStateOf(TrendingViewState())
+
+    private val _trendingViewState = MutableStateFlow(TrendingViewState())
+    val trendingViewState: StateFlow<TrendingViewState> get() = _trendingViewState
+
+    private var trendingJob: Job? = null
 
     private val exceptionHandler: CoroutineExceptionHandler =
         CoroutineExceptionHandler { _, throwable ->
             viewModelScope.launch {
-                trendingViewState.copy(
-                    error = throwable
+                _trendingViewState.emit(
+                    trendingViewState.value.copy(
+                        error = throwable
+                    )
                 )
             }
         }
@@ -50,24 +57,34 @@ class TrendingViewModel @Inject constructor(
 
     // reduce to activity
     private fun reduceTrending() {
-        viewModelScope.launch(exceptionHandler + dispatcher) {
-            trendingViewState = trendingViewState.copy(
-                isLoading = true,
-                error = null
-            )
-            trendingViewState = try {
-                trendingViewState.copy(
-                    trendingInfo = getTrendingUseCase(),
-                    isLoading = false,
+        cancelActiveJobs()
+        trendingJob = viewModelScope.launch(exceptionHandler + dispatcher) {
+            _trendingViewState.emit(
+                trendingViewState.value.copy(
+                    isLoading = true,
                     error = null
                 )
-            } catch (error: Exception) {
-                trendingViewState.copy(
-                    trendingInfo = null,
-                    isLoading = false,
-                    error = error
-                )
-            }
+            )
+            _trendingViewState.emit(
+                try {
+                    trendingViewState.value.copy(
+                        trendingInfo = getTrendingUseCase(),
+                        isLoading = false,
+                        error = null
+                    )
+                } catch (exception: Exception) {
+                    _trendingViewState.value.copy(
+                        trendingInfo = null,
+                        isLoading = false,
+                        error = exception
+                    )
+                }
+            )
         }
+    }
+
+    private fun cancelActiveJobs() {
+        trendingJob?.cancelChildren()
+        trendingJob?.cancel()
     }
 }
