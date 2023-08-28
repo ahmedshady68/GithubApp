@@ -1,13 +1,18 @@
 package com.shady.githubapp
 
-import com.shady.domain.entity.Item
-import com.shady.domain.entity.Owner
-import com.shady.domain.entity.TrendingResponse
+import com.shady.data.models.Item
+import com.shady.data.models.Owner
+import com.shady.data.models.TrendingRawResponse
+import com.shady.domain.entity.TrendingDomainModel
+import com.shady.domain.entity.TrendingDominItem
+import com.shady.githubapp.entities.TrendingViewItem
 import com.shady.githubapp.helper.FakeExceptionTrendingUseCase
 import com.shady.githubapp.helper.FakeThrowableTrendingUseCase
 import com.shady.githubapp.helper.FakeTrendingUseCase
 import com.shady.githubapp.helper.MainCoroutineRule
 import com.shady.githubapp.helper.ViewModelTest
+import com.shady.githubapp.mapper.TrendingViewEntityMapper
+import io.mockk.coEvery
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
@@ -26,17 +31,46 @@ class TrendingViewModelTest : ViewModelTest() {
     fun `when GetTrending is triggered with success value`() = runTest {
         // Given
         val fakeUseCase = FakeTrendingUseCase()
-        val mViewModel = TrendingViewModel(fakeUseCase, dispatcher = testDispatcher)
+        val mViewModel = TrendingViewModel(
+            getTrendingUseCase = fakeUseCase,
+            dispatcher = testDispatcher,
+            trendingViewEntityMapper = TrendingViewEntityMapper()
+        )
+        // domainEntity
         val trendingEntityItem =
-            Item("testName", "testDes", "testLng", "testStars", Owner("testImage", "testUser"))
-        val trendingResponse = TrendingResponse(listOf(trendingEntityItem))
-        fakeUseCase.emit(trendingResponse)
+            TrendingDominItem(
+                "testUser",
+                "testName",
+                "testLng",
+                "testStars",
+                "testImage",
+                "testUser"
+            )
+        val domainModel = TrendingDomainModel(listOf(trendingEntityItem))
+
+        // viewEntity
+        val trendingEntityItemView =
+            TrendingViewItem(
+                "testUser",
+                "testUser",
+                "testLng",
+                "testStars",
+                "testImage",
+                "testName"
+            )
+        val viewModelModel = listOf(trendingEntityItemView)
+        fakeUseCase.emit(domainModel)
         // When
         mainCoroutineRule.launch {
             mViewModel.intentChannel.send(TrendingIntent.GetTrending)
+            coEvery { mViewModel.trendingViewState.value } returns TrendingViewState(
+                viewModelModel,
+                true,
+                error = null
+            )
         }
         // Then
-        assertEquals(trendingResponse, mViewModel.trendingViewState.value.trendingInfo)
+        assertEquals(viewModelModel, mViewModel.trendingViewState.value.trendingInfo)
         assertEquals(null, mViewModel.trendingViewState.value.error?.message)
         assertEquals(false, mViewModel.trendingViewState.value.isLoading)
     }
@@ -48,7 +82,10 @@ class TrendingViewModelTest : ViewModelTest() {
         val fakeUseCase = FakeThrowableTrendingUseCase()
         fakeUseCase.setThrowable(throwable)
         fakeUseCase.emit(throwable)
-        val mViewModel = TrendingViewModel(fakeUseCase, dispatcher = testDispatcher)
+        val mViewModel = TrendingViewModel(
+            getTrendingUseCase = fakeUseCase, dispatcher = testDispatcher,
+            trendingViewEntityMapper = TrendingViewEntityMapper()
+        )
         // When
         mainCoroutineRule.launch {
             mViewModel.intentChannel.send(TrendingIntent.GetTrending)
@@ -67,9 +104,12 @@ class TrendingViewModelTest : ViewModelTest() {
         fakeUseCase.setException(exception)
         val trendingEntityItem =
             Item("testName", "testDes", "testLng", "testStars", Owner("testImage", "testUser"))
-        val trendingResponse = TrendingResponse(listOf(trendingEntityItem))
+        val trendingResponse = TrendingRawResponse(listOf(trendingEntityItem))
         fakeUseCase.emit(trendingResponse)
-        val mViewModel = TrendingViewModel(fakeUseCase, dispatcher = testDispatcher)
+        val mViewModel = TrendingViewModel(
+            getTrendingUseCase = fakeUseCase, dispatcher = testDispatcher,
+            trendingViewEntityMapper = TrendingViewEntityMapper()
+        )
         // When
         mainCoroutineRule.launch {
             mViewModel.intentChannel.send(TrendingIntent.GetTrending)
