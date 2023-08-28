@@ -1,4 +1,4 @@
-package com.shady.githubapp.screens
+package com.shady.githubapp.ui.screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
@@ -25,7 +25,6 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.shady.githubapp.R
-
 
 @Composable
 fun TrendingErrorScreen(retryOnClick: () -> Unit) {

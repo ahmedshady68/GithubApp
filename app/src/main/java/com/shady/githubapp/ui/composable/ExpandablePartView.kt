@@ -1,4 +1,4 @@
-package com.shady.githubapp.composable
+package com.shady.githubapp.ui.composable
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
