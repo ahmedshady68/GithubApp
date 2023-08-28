@@ -1,4 +1,4 @@
-package com.shady.githubapp
+package com.shady.githubapp.helper
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

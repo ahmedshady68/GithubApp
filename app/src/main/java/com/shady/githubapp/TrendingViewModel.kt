@@ -2,7 +2,7 @@ package com.shady.githubapp
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.shady.domain.usecase.GetTrending
+import com.shady.domain.usecase.GetTrendingParent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TrendingViewModel @Inject constructor(
-    val getTrendingUseCase: GetTrending,
+    private val getTrendingUseCase: GetTrendingParent,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) :
     ViewModel() {

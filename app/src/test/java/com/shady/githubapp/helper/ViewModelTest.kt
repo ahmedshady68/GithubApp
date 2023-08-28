@@ -3,7 +3,8 @@ package com.shady.githubapp.helper
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.cancelChildren
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.After
@@ -15,7 +16,7 @@ open class ViewModelTest {
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @ExperimentalCoroutinesApi
-    protected val testDispatcher = TestCoroutineDispatcher()
+    protected val testDispatcher = UnconfinedTestDispatcher()
 
     @ExperimentalCoroutinesApi
     @Before
@@ -27,6 +28,6 @@ open class ViewModelTest {
     @After
     open fun afterTest() {
         Dispatchers.resetMain()
-        testDispatcher.cleanupTestCoroutines()
+        testDispatcher.cancelChildren()
     }
 }
