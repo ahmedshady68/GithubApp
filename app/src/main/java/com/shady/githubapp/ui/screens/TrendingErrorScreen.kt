@@ -1,6 +1,7 @@
 package com.shady.githubapp.ui.screens
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment.Companion.BottomCenter
@@ -35,6 +37,7 @@ fun TrendingErrorScreen(retryOnClick: () -> Unit) {
             modifier = Modifier
                 .fillMaxWidth()
                 .align(TopCenter)
+                .background(MaterialTheme.colorScheme.secondary)
         ) {
             LottieView(
                 modifier = Modifier
@@ -45,7 +48,7 @@ fun TrendingErrorScreen(retryOnClick: () -> Unit) {
                 Modifier
                     .padding(top = 25.dp)
                     .fillMaxWidth(),
-                color = Color.Black,
+                color = MaterialTheme.colorScheme.tertiary,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
                 fontSize = 20.sp

@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
@@ -32,7 +33,8 @@ fun ExpandablePartView(
         ) {
             Text(
                 text = state.description,
-                modifier = Modifier.padding(top = 10.dp)
+                modifier = Modifier.padding(top = 10.dp),
+                color = MaterialTheme.colorScheme.tertiary
             )
             Row(
                 modifier = Modifier
@@ -40,7 +42,8 @@ fun ExpandablePartView(
                     .padding(top = 10.dp)
             ) {
                 Image(
-                    painterResource(R.drawable.language_icon), "language_icon",
+                    painterResource(R.drawable.language_icon),
+                    "language_icon",
                     modifier = Modifier
                         .size(16.dp)
                         .align(Alignment.CenterVertically),
@@ -50,7 +53,8 @@ fun ExpandablePartView(
                     text = state.programmingLanguage,
                     modifier = Modifier
                         .padding(start = 6.dp)
-                        .align(Alignment.CenterVertically)
+                        .align(Alignment.CenterVertically),
+                    color = MaterialTheme.colorScheme.tertiary
                 )
                 Image(
                     painterResource(R.drawable.stargazers_count_icon),
@@ -65,7 +69,8 @@ fun ExpandablePartView(
                     text = state.stars,
                     modifier = Modifier
                         .padding(start = 6.dp)
-                        .align(Alignment.CenterVertically)
+                        .align(Alignment.CenterVertically),
+                    color = MaterialTheme.colorScheme.tertiary
                 )
             }
         }

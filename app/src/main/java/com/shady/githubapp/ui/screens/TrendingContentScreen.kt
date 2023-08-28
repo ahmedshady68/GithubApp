@@ -1,9 +1,11 @@
 package com.shady.githubapp.ui.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -26,7 +28,9 @@ fun TrendingList(listState: TrendingViewState, retryOnClick: () -> Unit) {
 @Composable
 fun ShimmerLoading(isLoading: Boolean) {
     LazyColumn(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.secondary)
     ) {
         items(20) {
             ShimmerListItem(

@@ -11,9 +11,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,7 +32,7 @@ import com.shady.githubapp.entities.TrendingViewItem
 @Composable
 fun TrendingCard(state: TrendingViewItem) {
     val expanded = remember { mutableStateOf(false) }
-    Surface(color = Color.White,
+    Surface(color = MaterialTheme.colorScheme.secondary,
         modifier = Modifier.clickable { expanded.value = !expanded.value }) {
         Column(
             modifier = Modifier.fillMaxWidth()
@@ -56,12 +56,18 @@ fun TrendingCard(state: TrendingViewItem) {
                         .weight(1f)
                 ) {
                     Text(
-                        text = state.title, fontSize = 16.sp
+                        text = state.title,
+                        fontSize = 16.sp,
+                        color = MaterialTheme.colorScheme.tertiary
                     )
                     Text(
-                        text = state.subTitle, style = MaterialTheme.typography.body1.copy(
+                        text = state.subTitle,
+                        style = MaterialTheme.typography.bodyMedium.copy(
                             fontWeight = FontWeight.ExtraBold
-                        ), fontSize = 18.sp, modifier = Modifier.padding(top = 5.dp)
+                        ),
+                        fontSize = 18.sp,
+                        modifier = Modifier.padding(top = 5.dp),
+                        color = MaterialTheme.colorScheme.tertiary
                     )
                 }
             }
