@@ -1,8 +1,8 @@
 package com.shady.githubapp.ui.composable
 
 import androidx.compose.runtime.Composable
-import com.shady.githubapp.entities.TrendingViewState
-import com.shady.githubapp.entities.TrendingViewItem
+import com.shady.githubapp.ui.entities.TrendingViewState
+import com.shady.githubapp.ui.entities.TrendingViewItem
 import com.shady.githubapp.ui.screens.TrendingGithubApp
 import com.shady.githubapp.ui.theme.GithubAppTheme
 

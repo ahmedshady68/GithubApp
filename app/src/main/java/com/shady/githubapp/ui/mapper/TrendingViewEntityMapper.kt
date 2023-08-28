@@ -1,7 +1,7 @@
-package com.shady.githubapp.mapper
+package com.shady.githubapp.ui.mapper
 
 import com.shady.domain.entity.TrendingDomainModel
-import com.shady.githubapp.entities.TrendingViewItem
+import com.shady.githubapp.ui.entities.TrendingViewItem
 
 class TrendingViewEntityMapper {
 

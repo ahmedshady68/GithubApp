@@ -17,7 +17,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.shady.githubapp.R
-import com.shady.githubapp.entities.TrendingViewItem
+import com.shady.githubapp.ui.entities.TrendingViewItem
 
 
 @Composable

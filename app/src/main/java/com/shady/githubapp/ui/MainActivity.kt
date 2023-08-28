@@ -9,9 +9,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
 import com.shady.githubapp.ui.composable.GithubAppPreview
-import com.shady.githubapp.entities.TrendingIntent
+import com.shady.githubapp.ui.entities.TrendingIntent
 import com.shady.githubapp.ui.screens.TrendingGithubApp
-import com.shady.githubapp.viewmodel.TrendingViewModel
+import com.shady.githubapp.ui.viewmodel.TrendingViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

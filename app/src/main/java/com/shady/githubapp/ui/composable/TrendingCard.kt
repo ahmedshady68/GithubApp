@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.shady.githubapp.R
-import com.shady.githubapp.entities.TrendingViewItem
+import com.shady.githubapp.ui.entities.TrendingViewItem
 
 @Composable
 fun TrendingCard(state: TrendingViewItem) {

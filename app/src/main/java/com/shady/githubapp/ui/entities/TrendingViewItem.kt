@@ -1,4 +1,4 @@
-package com.shady.githubapp.entities
+package com.shady.githubapp.ui.entities
 
 data class TrendingViewItem(
     val title: String,
