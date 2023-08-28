@@ -2,7 +2,9 @@ package com.shady.githubapp
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.shady.domain.entity.TrendingDomainModel
 import com.shady.domain.usecase.GetTrendingParent
+import com.shady.githubapp.mapper.TrendingViewEntityMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -19,6 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class TrendingViewModel @Inject constructor(
     private val getTrendingUseCase: GetTrendingParent,
+    private val trendingViewEntityMapper: TrendingViewEntityMapper,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) :
     ViewModel() {
@@ -68,7 +71,8 @@ class TrendingViewModel @Inject constructor(
             _trendingViewState.emit(
                 try {
                     trendingViewState.value.copy(
-                        trendingInfo = getTrendingUseCase(),
+                        trendingInfo =
+                        mapToViewState(getTrendingUseCase()),
                         isLoading = false,
                         error = null
                     )
@@ -87,4 +91,6 @@ class TrendingViewModel @Inject constructor(
         trendingJob?.cancelChildren()
         trendingJob?.cancel()
     }
+
+    private fun mapToViewState(it: TrendingDomainModel?) = trendingViewEntityMapper.apply(it)
 }

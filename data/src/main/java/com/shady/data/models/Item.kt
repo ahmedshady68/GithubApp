@@ -1,16 +1,16 @@
-package com.shady.domain.entity
+package com.shady.data.models
 
 import com.google.gson.annotations.SerializedName
 
 data class Item(
     @SerializedName("full_name")
-    val fullName: String,
+    val fullName: String?,
     @SerializedName("description")
-    val description: String,
+    val description: String?,
     @SerializedName("language")
-    val language: String,
+    val language: String?,
     @SerializedName("stargazers_count")
-    val stargazersCount: String,
+    val stargazersCount: String?,
     @SerializedName("owner")
-    val owner: Owner,
+    val owner: Owner?,
 )

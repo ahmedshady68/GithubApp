@@ -1,9 +1,9 @@
 package com.shady.githubapp
 
-import com.shady.domain.entity.TrendingResponse
+import com.shady.githubapp.entities.TrendingViewItem
 
 data class TrendingViewState(
-    val trendingInfo: TrendingResponse? = null,
+    val trendingInfo: List<TrendingViewItem>? = null,
     val isLoading: Boolean = false,
-    val error: Throwable? = null
+    val error: Throwable? = null,
 )

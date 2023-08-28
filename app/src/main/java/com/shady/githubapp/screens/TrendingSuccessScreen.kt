@@ -10,7 +10,7 @@ import com.shady.githubapp.composable.TrendingCard
 fun TrendingSuccessScreen(state: TrendingViewState) {
     state.trendingInfo?.let {
         LazyColumn {
-            items(state.trendingInfo.items) { item ->
+            items(state.trendingInfo) { item ->
                 TrendingCard(state = item)
             }
         }

@@ -1,6 +1,6 @@
 package com.shady.data.remote
 
-import com.shady.domain.entity.TrendingResponse
+import com.shady.data.models.TrendingRawResponse
 import retrofit2.http.GET
 
 interface ApiService {
@@ -8,5 +8,5 @@ interface ApiService {
         const val BASE_URL = "https://api.github.com/search/"
     }
     @GET("repositories?q=language=+sort:stars")
-    suspend fun getTrending(): TrendingResponse
+    suspend fun getTrending(): TrendingRawResponse
 }

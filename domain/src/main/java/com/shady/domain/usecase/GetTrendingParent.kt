@@ -1,7 +1,7 @@
 package com.shady.domain.usecase
 
-import com.shady.domain.entity.TrendingResponse
+import com.shady.domain.entity.TrendingDomainModel
 
 interface GetTrendingParent {
-    suspend operator fun invoke(): TrendingResponse?
+    suspend operator fun invoke(): TrendingDomainModel?
 }

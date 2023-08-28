@@ -1,10 +1,10 @@
-package com.shady.domain.entity
+package com.shady.data.models
 
 import com.google.gson.annotations.SerializedName
 
 data class Owner(
     @SerializedName("avatar_url")
-    val imageProfile: String,
+    val imageProfile: String?,
     @SerializedName("login")
-    val userName: String,
+    val userName: String?,
 )

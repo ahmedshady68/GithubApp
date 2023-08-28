@@ -1,7 +1,7 @@
 package com.shady.domain.repo
 
-import com.shady.domain.entity.TrendingResponse
+import com.shady.domain.entity.TrendingDomainModel
 
 interface TrendingRepo {
-    suspend fun getTrendingFromRemote(): TrendingResponse?
+    suspend fun getTrendingFromRemote(): TrendingDomainModel?
 }
