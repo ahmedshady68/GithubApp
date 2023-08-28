@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.shady.githubapp.TrendingViewState
+import com.shady.githubapp.entities.TrendingViewState
 import com.shady.githubapp.composable.AppBarTrending
 import com.shady.githubapp.ui.theme.GithubAppTheme
 

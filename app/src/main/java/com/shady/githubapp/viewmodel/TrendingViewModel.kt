@@ -1,9 +1,11 @@
-package com.shady.githubapp
+package com.shady.githubapp.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.shady.domain.entity.TrendingDomainModel
 import com.shady.domain.usecase.GetTrendingParent
+import com.shady.githubapp.entities.TrendingIntent
+import com.shady.githubapp.entities.TrendingViewState
 import com.shady.githubapp.mapper.TrendingViewEntityMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher

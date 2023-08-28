@@ -5,13 +5,16 @@ import com.shady.data.models.Owner
 import com.shady.data.models.TrendingRawResponse
 import com.shady.domain.entity.TrendingDomainModel
 import com.shady.domain.entity.TrendingDominItem
+import com.shady.githubapp.entities.TrendingIntent
 import com.shady.githubapp.entities.TrendingViewItem
+import com.shady.githubapp.entities.TrendingViewState
 import com.shady.githubapp.helper.FakeExceptionTrendingUseCase
 import com.shady.githubapp.helper.FakeThrowableTrendingUseCase
 import com.shady.githubapp.helper.FakeTrendingUseCase
 import com.shady.githubapp.helper.MainCoroutineRule
 import com.shady.githubapp.helper.ViewModelTest
 import com.shady.githubapp.mapper.TrendingViewEntityMapper
+import com.shady.githubapp.viewmodel.TrendingViewModel
 import io.mockk.coEvery
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi

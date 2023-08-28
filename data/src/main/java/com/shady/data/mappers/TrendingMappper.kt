@@ -8,28 +8,18 @@ open class TrendingMappper {
 
     fun apply(raw: List<Item>?): TrendingDomainModel {
         val toastItemDomainEntity = raw?.map {
-            // checkInvalidParameters(it)
             mapToToastItemDomainEntity(it)
         }
         return TrendingDomainModel(toastItemDomainEntity)
     }
 
-    /*private fun checkInvalidParameters(raw: Item) {
-        val invalidParams: MutableList<String> = mutableListOf()
-        if (raw.fullName == null) invalidParams.add("fullName")
-        if (raw.description == null) invalidParams.add("description")
-        if (raw.language == null) invalidParams.add("language")
-        if (raw.owner == null) invalidParams.add("owner")
-        if (invalidParams.isNotEmpty()) throw EssentialParamMissingException(invalidParams)
-    }*/
-
     private fun mapToToastItemDomainEntity(it: Item) =
         TrendingDominItem(
-            fullName = it.fullName ?: "",
-            description = it.description ?: "",
-            language = it.language ?: "",
-            stargazersCount = it.stargazersCount ?: "",
-            imageProfile = it.owner?.imageProfile ?: "",
-            userName = it.owner?.userName ?: ""
+            fullName = it.fullName ?: "N/A",
+            description = it.description ?: "N/A",
+            language = it.language ?: "N/A",
+            stargazersCount = it.stargazersCount ?: "N/A",
+            imageProfile = it.owner?.imageProfile ?: "N/A",
+            userName = it.owner?.userName ?: "N/A"
         )
 }

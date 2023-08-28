@@ -1,4 +1,4 @@
-package com.shady.githubapp
+package com.shady.githubapp.application
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

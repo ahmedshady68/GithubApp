@@ -1,4 +1,4 @@
-package com.shady.githubapp
+package com.shady.githubapp.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -9,7 +9,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
 import com.shady.githubapp.composable.GithubAppPreview
+import com.shady.githubapp.entities.TrendingIntent
 import com.shady.githubapp.screens.TrendingGithubApp
+import com.shady.githubapp.viewmodel.TrendingViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

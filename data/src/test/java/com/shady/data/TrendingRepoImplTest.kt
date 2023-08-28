@@ -22,7 +22,7 @@ class TrendingRepoImplTest {
     private val repo = TrendingRepoImpl(apiService = apiService, mapper = mapper)
 
     @Test
-    fun `should call getTrendingFromRemote from TrendingRepoImpl when calling getCities from repo `() {
+    fun `should call apply fun from mapper when calling getTrendingFromRemote from repo `() {
         runBlocking {
             // Given
             val trendingEntityItem =

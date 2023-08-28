@@ -1,4 +1,4 @@
-package com.shady.githubapp
+package com.shady.githubapp.interceptor
 
 import okhttp3.CacheControl
 import okhttp3.Interceptor

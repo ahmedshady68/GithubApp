@@ -1,6 +1,4 @@
-package com.shady.githubapp
-
-import com.shady.githubapp.entities.TrendingViewItem
+package com.shady.githubapp.entities
 
 data class TrendingViewState(
     val trendingInfo: List<TrendingViewItem>? = null,

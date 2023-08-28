@@ -7,7 +7,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.shady.githubapp.TrendingViewState
+import com.shady.githubapp.entities.TrendingViewState
 import com.shady.githubapp.composable.ShimmerListItem
 
 @Composable

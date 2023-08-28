@@ -13,7 +13,7 @@ class GetTrendingTest {
     private val getTrendingUseCase = GetTrending(trendingRepo)
 
     @Test
-    fun `calling getCitesList with empty string should getAllCities`() {
+    fun `calling getTrendingUseCase() should call getTrendingFromRemote`() {
         runBlocking {
             // act
             getTrendingUseCase.invoke()

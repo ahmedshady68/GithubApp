@@ -2,7 +2,7 @@ package com.shady.githubapp.di
 
 import android.content.Context
 import com.shady.data.remote.ApiService
-import com.shady.githubapp.CacheInterceptor
+import com.shady.githubapp.interceptor.CacheInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
